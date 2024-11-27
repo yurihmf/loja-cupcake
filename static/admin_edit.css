@@ -1,0 +1,89 @@
+/* Reset de estilos padrão */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #ff5f6d; /* Fundo do body */
+}
+
+.container {
+    max-width: 1200px; /* Aumentei a largura para acomodar mais produtos */
+    margin: 20px auto;
+    background-color: #fff;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+    transition: box-shadow 0.3s ease;
+    display: grid; /* Alterei para grid layout */
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Layout responsivo com tamanho mínimo de 200px */
+    gap: 20px; /* Espaçamento entre os produtos */
+}
+
+.container:hover {
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.3);
+}
+
+h1 {
+    font-size: 32px;
+    margin-bottom: 30px;
+    text-align: center;
+    color: #ff5f6d; /* Cor do título */
+}
+
+.product {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease;
+}
+
+.product:hover {
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+}
+
+form label {
+    display: block;
+    margin-bottom: 12px;
+    font-weight: bold;
+    color: #333; /* Cor do texto do label */
+}
+
+input[type="text"],
+textarea {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 20px;
+    border: 2px solid #ff5f6d; /* Cor da borda dos inputs */
+    border-radius: 8px;
+    font-size: 18px;
+    transition: border-color 0.3s ease;
+}
+
+input[type="text"]:focus,
+textarea:focus {
+    border-color: #ffc371; /* Cor da borda ao focar */
+}
+
+input[type="checkbox"] {
+    margin-bottom: 30px;
+}
+
+input[type="submit"] {
+    padding: 14px 24px;
+    background-color: #ff5f6d; /* Cor do botão de submit */
+    color: #fff; /* Cor do texto do botão */
+    border: none;
+    border-radius: 8px;
+    font-size: 20px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+input[type="submit"]:hover {
+    background-color: #ffc371; /* Cor do botão ao passar o mouse */
+}

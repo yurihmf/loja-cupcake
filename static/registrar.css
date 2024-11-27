@@ -1,0 +1,128 @@
+/* Estilos para o corpo com imagem de fundo */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(to right, #ff5f6d, #ffc371); /* Fundo gradiente idêntico à tela de login */
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Overlay para melhorar o contraste */
+.background-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Overlay semi-transparente */
+    z-index: -1; /* Colocar atrás do conteúdo */
+}
+
+/* Adição da logo */
+.logo {
+    width: 120px; /* Ajuste o tamanho conforme necessário */
+    margin-bottom: 20px;
+}
+
+/* Estilos para o container */
+.container {
+    max-width: 350px; /* Reduzindo o tamanho */
+    margin: 50px auto;
+    padding: 30px;
+    background-color: rgba(255, 255, 255, 0.9); /* Fundo claro com transparência */
+    border-radius: 10px;
+    box-shadow: 0px 0px 20px rgba(255, 255, 255, 0.2);
+    text-align: center;
+    position: relative; /* Para garantir que o z-index funcione */
+    z-index: 1;
+}
+
+/* Estilos para o título */
+h1 {
+    color: #333; /* Cor original */
+    font-size: 36px;
+    margin-bottom: 30px; /* Espaçamento inferior */
+    text-shadow: 2px 2px 8px rgba(255, 255, 255, 0.7); /* Sombra clara */
+}
+
+/* Estilos para os rótulos dos campos de entrada */
+label {
+    font-size: 16px;
+    font-weight: 600;
+    color: #666; /* Cinza médio */
+    display: block;
+    margin-top: 10px;
+    text-align: left;
+}
+
+/* Estilos para os campos de entrada de texto */
+.form-field {
+    width: 90%;
+    padding: 12px;
+    margin-top: 10px;
+    border: 2px solid #ff5f6d; /* Cor original */
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.8);
+    color: #333;
+    transition: background 0.3s, border-color 0.3s;
+    font-size: 16px;
+}
+
+.form-field::placeholder {
+    color: #999; /* Cinza claro */
+    opacity: 1;
+}
+
+.form-field:focus {
+    background: rgba(255, 255, 255, 1);
+    border-color: #ffc371; /* Cor original */
+    box-shadow: 0 0 8px rgba(255, 195, 113, 0.5);
+    outline: none;
+}
+
+/* Estilos para o botão de registro */
+.register-button {
+    background-color: #ff5f6d; /* Cor original */
+    margin-top: 20px;
+    color: #fff;
+    padding: 14px 24px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 20px;
+    font-weight: 600;
+    transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+    outline: none;
+}
+
+.register-button:hover {
+    background-color: #ffc371; /* Cor original */
+    transform: translateY(-3px);
+    box-shadow: 0 5px 10px rgba(255, 195, 113, 0.2);
+}
+
+/* Estilos para o link de login */
+.login-link {
+    color: #ff5f6d; /* Cor original */
+    text-decoration: none;
+    font-size: 17px;
+    font-weight: bold;
+    margin-top: 15px;
+    transition: color 0.3s ease, text-decoration 0.3s ease;
+}
+
+.login-link:hover {
+    color: #ffc371; /* Cor original */
+    text-decoration: underline;
+}
+
+/* Animação para o fundo */
+@keyframes backgroundMove {
+    0% { background-position: center; }
+    50% { background-position: right; }
+    100% { background-position: center; }
+}

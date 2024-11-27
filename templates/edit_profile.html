@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar Perfil</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='edit_profile.css') }}">
+    <link rel="stylesheet" href="../static/mediaSmartphone.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/imask/6.0.7/imask.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>Editar Perfil</h1>
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                <div class="success-message"> <!-- Use a classe success-message -->
+                    <ul class="flash-messages">
+                        {% for message in messages %}
+                            <li>{{ message }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            {% endif %}
+        {% endwith %}
+        <form method="POST" action="/edit_profile">
+            <label for="nome">Nome:</label>
+            <input type="text" id="nome" name="nome" class="form-field" required value="{{ usuario.nome }}">
+
+            <label for="endereco">Endereço:</label>
+            <input type="text" id="endereco" name="endereco" class="form-field" required value="{{ usuario.endereco }}">
+
+            <label for="telefone">Telefone:</label>
+            <input type="telefone" id="telefone" name="telefone" class="form-field" required>
+
+            <label for="senha">Senha:</label>
+            <input type="password" id="senha" name="senha" class="form-field" required>
+
+            <label for="confirma_senha">Confirmar Senha:</label>
+            <input type="password" id="confirma_senha" name="confirma_senha" class="form-field" required>
+
+            <button type="submit" class="register-button">Salvar Alterações</button>
+
+            <a href="/dashboard" class="action-button">Voltar</a>
+        </form>
+
+
+        <!-- JavaScript para ocultar a mensagem de sucesso após 5 segundos -->
+        <script>
+            setTimeout(function() {
+                var successMessage = document.querySelector('.success-message');
+                if (successMessage) {
+                    successMessage.style.display = 'none';
+                }
+            }, 5000); // 5000 milissegundos (5 segundos)
+
+            document.addEventListener("DOMContentLoaded", function() {
+                var telefoneInput = document.getElementById("telefone");
+
+                var telefoneMask = IMask(telefoneInput, {
+                    mask: '(00) 00000-0000'  // Defina a máscara como desejar
+                });
+            });
+
+            // Confirmação de senha
+            $('form').submit(function() {
+                    var senha = $('#senha').val();
+                    var confirmaSenha = $('#confirma_senha').val();
+
+                    if (senha !== confirmaSenha) {
+                        alert('As senhas não correspondem!');
+                        return false; // Impede o envio do formulário se as senhas não coincidirem
+                    }
+            });
+        </script>
+    </div>
+</body>
+</html>

@@ -1,0 +1,113 @@
+/* Estilos gerais */
+body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: linear-gradient(to right, #ff5f6d, #ffc371); /* Fundo gradiente colorido */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    position: relative;
+    color: #333;
+}
+
+.container {
+    max-width: 400px;
+    padding: 40px;
+    background-color: rgba(255, 255, 255, 0.9); /* Fundo claro com transparência */
+    border-radius: 15px;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    position: relative;
+}
+
+/* Estilos do título */
+h1 {
+    color: #333;
+    font-size: 36px;
+    margin-bottom: 20px;
+    text-shadow: 1px 1px 5px rgba(255, 255, 255, 0.7);
+}
+
+/* Estilos das etiquetas */
+label {
+    font-size: 16px;
+    font-weight: 600;
+    color: #666;
+    display: block;
+    margin-top: 10px;
+    text-align: left;
+}
+
+/* Estilos dos campos de entrada */
+input[type="email"],
+input[type="password"] {
+    width: 90%;
+    padding: 12px;
+    margin-top: 10px;
+    border: 2px solid #ff5f6d; /* Cor original */
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.8);
+    color: #333;
+    transition: background 0.3s, border-color 0.3s;
+    font-size: 16px;
+}
+
+input[type="email"]::placeholder,
+input[type="password"]::placeholder {
+    color: #999; /* Cinza claro */
+    opacity: 1;
+}
+
+input[type="email"]:focus,
+input[type="password"]:focus {
+    background: rgba(255, 255, 255, 1);
+    border-color: #ffc371; /* Cor original */
+    box-shadow: 0 0 8px rgba(255, 195, 113, 0.5);
+    outline: none;
+}
+
+/* Estilos para o botão de login */
+.login-button {
+    background-color: #ff5f6d; /* Cor original */
+    margin-top: 20px;
+    color: #fff;
+    padding: 14px 24px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 20px;
+    font-weight: 600;
+    transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+    outline: none;
+}
+
+.login-button:hover {
+    background-color: #ffc371; /* Cor original */
+    transform: translateY(-3px);
+    box-shadow: 0 5px 10px rgba(255, 195, 113, 0.3);
+}
+
+/* Estilos para o link de registro */
+.register-link {
+    color: #ff5f6d; /* Cor original */
+    text-decoration: none;
+    font-size: 17px;
+    font-weight: bold;
+    margin-top: 15px;
+    transition: color 0.3s ease, text-decoration 0.3s ease;
+}
+
+.register-link:hover {
+    color: #ffc371; /* Cor original */
+    text-decoration: underline;
+}
+
+/* Estilo para a logo */
+.logo-img {
+    max-width: 120px; /* Ajuste o tamanho da logo conforme necessário */
+    height: auto; /* Mantém a proporção da imagem */
+    margin-bottom: 20px; /* Espaçamento entre a logo e o título */
+}
+

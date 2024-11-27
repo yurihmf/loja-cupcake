@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Painel de Administração</title>
+    <link rel="stylesheet" href="../static/admin_dashboard.css">
+    <link rel="stylesheet" href="../static/mediaSmartphone.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <style>
+        /* Estilos adicionais para o botão de logout */
+        .logout-button {
+            position: absolute;
+            top: 20px; /* Distância do topo */
+            right: 20px; /* Distância do lado direito */
+            background-color: #ff5f6d; /* Cor de fundo do botão */
+            color: white; /* Cor do texto */
+            padding: 10px 15px; /* Espaçamento interno */
+            border-radius: 5px; /* Bordas arredondadas */
+            text-decoration: none; /* Remove o sublinhado */
+            transition: background-color 0.3s; /* Transição suave */
+        }
+
+        .logout-button:hover {
+            background-color: #006494; /* Cor do botão ao passar o mouse */
+        }
+
+        .admin-dashboard {
+            position: relative; /* Necessário para o posicionamento absoluto do botão */
+            padding: 20px; /* Adiciona espaçamento interno ao painel */
+        }
+
+        .admin-content {
+            margin-top: 60px; /* Adiciona margem para separar o conteúdo do botão */
+        }
+
+        /* Estilo para a mensagem */
+        .mensagem {
+            margin-top: 20px;
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+        .mensagem-sucesso {
+            background-color: #d4edda; /* Cor de fundo para sucesso */
+            color: #155724; /* Cor do texto para sucesso */
+        }
+
+        .mensagem-erro {
+            background-color: #f8d7da; /* Cor de fundo para erro */
+            color: #721c24; /* Cor do texto para erro */
+        }
+    </style>
+</head>
+<body>
+    <div class="admin-dashboard">
+        <a href="/logout" class="logout-button" title="Sair">
+            <i class="fa fa-sign-out-alt"></i> Sair
+        </a>
+        <div class="admin-content">
+            <h3>Bem-vindo ao Painel de Administração!</h3>
+            <p>Aqui você pode gerenciar produtos.</p>
+        </div>
+        <div class="admin-menu">
+            <h2>Gerenciar Produtos</h2>
+            <ul>
+                <li><a href="/admin/add_product">Adicionar Produto</a></li>
+                <li><a href="/admin_list_producto">Editar Produto</a></li>
+            </ul>
+        </div>
+    </div>
+    {% if 'mensagem' in session %}
+        <div class="mensagem {% if session['mensagem'] == 'Cupcake atualizado com sucesso!' %} mensagem-sucesso {% else %} mensagem-erro {% endif %}">
+            {{ session['mensagem'] }}
+        </div>
+        {% set _ = session.pop('mensagem', None) %}
+    {% endif %}
+</body>
+<script>
+    // Seleciona a mensagem e a esconde após um intervalo de tempo
+    var mensagemElement = document.querySelector('.mensagem');
+    if (mensagemElement) {
+        setTimeout(function() {
+            mensagemElement.style.display = 'none';
+        }, 3000); // Esconde após 3 segundos (3000 milissegundos)
+    }
+</script>
+</html>

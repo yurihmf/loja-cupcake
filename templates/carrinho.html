@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carrinho de Compras</title>
+    <!-- Referência ao arquivo CSS externo -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="../static/car.css">
+    <link rel="stylesheet" href="../static/mediaSmartphone.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        // Função para exibir a caixa de diálogo de erro
+        function showErrorDialog(message) {
+            var errorDialog = document.querySelector('.error-dialog');
+            var overlay = document.querySelector('.overlay');
+
+            // Exibir a caixa de diálogo e a sobreposição
+            errorDialog.style.display = 'block';
+            overlay.style.display = 'block';
+
+            // Preencher a mensagem de erro
+            var errorMessage = errorDialog.querySelector('.error-message');
+            errorMessage.textContent = message;
+
+            // Temporizador para fechar o diálogo e a mensagem após 2 segundos
+            setTimeout(function () {
+                closeErrorDialog();
+            }, 2000); // 2000 milissegundos = 2 segundos
+        }
+        // Função para fechar a caixa de diálogo de erro
+        function closeErrorDialog() {
+            var errorDialog = document.querySelector('.error-dialog');
+            var overlay = document.querySelector('.overlay');
+
+            // Ocultar a caixa de diálogo e a sobreposição
+            errorDialog.style.display = 'none';
+            overlay.style.display = 'none';
+        }
+    </script>
+</head>
+<body>
+   <div class="container">
+        <h1>Seu Carrinho</h1>
+        <!-- Botão de voltar -->
+        <a href="/dashboard" class="voltar-button">
+            <i class="fas fa-arrow-left"></i> Voltar
+        </a>
+        <form method="POST" action="/limpar-carrinho">
+            <button type="submit" class="limpar-carrinho-button">
+                <i class="fas fa-trash-alt"></i> Limpar Carrinho
+            </button>
+        </form>
+        <div class="total-price">
+            <p>Total do Carrinho: R$
+                {% if 'carrinho' in session and session['carrinho'] %}
+                    {# Calcular o total dos preços de todos os itens no carrinho #}
+                    {{ session['carrinho']|sum(attribute='total')|round(2) }}
+                {% else %}
+                    0.00
+                {% endif %}
+            </p>
+        </div>
+        <ul class="carrinho-items">
+            {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    <div class="overlay"></div>
+                    <div class="error-dialog">
+                        <p class="error-message"></p>
+                    </div>
+                    <script>
+                        var errorMessage = "{{ messages[0] }}";
+                        showErrorDialog(errorMessage); // Exibe a mensagem em uma caixa de diálogo
+                    </script>
+                {% endif %}
+            {% endwith %}
+            {% if 'carrinho' in session and session['carrinho'] %}
+                {% for item in session['carrinho'] %}
+                    <li class="carrinho-item">
+                        <div class="carrinho-item-image">
+                            <img src="{{ item['cupcake']['imagem_url'] }}" alt="{{ item['cupcake']['nome'] }}">
+                        </div>
+                        <div class="carrinho-item-info">
+                            <h2 class="cupcake-name">{{ item['cupcake']['nome'] }}</h2>
+                            <p class="cupcake-description">{{ item['cupcake']['descricao'] }}</p>
+                            <p class="cupcake-price">Preço: R$ {{ item['cupcake']['preco'] }}</p>
+                            <p class="cupcake-quantity">Quantidade: {{ item['quantidade'] }}</p>
+                            <p class="cupcake-total">Total: R$ {{ item['total']|round(2) }}</p>
+                        </div>
+                       <form method="POST" action="/remover-do-carrinho/{{ item['cupcake']['id'] }}">
+                            <button type="submit" class="remover-item-do-carrinho">
+                                <i class="fas fa-trash"></i> Remover
+                            </button>
+                       </form>
+                    </li>
+                {% endfor %}
+            {% else %}
+                <p class="empty-cart">O carrinho está vazio.</p>
+            {% endif %}
+        </ul>
+        <form action="/finalizar_pedido" method="post">
+            <div class="checkout-button-container">
+                <button type="submit" class="remover-item-do-carrinho">
+                    <i class="fas fa-shopping-cart"></i> Finalizar Compra
+                </button>
+            </div>
+        </form>
+   </div>
+</body>
+</html>

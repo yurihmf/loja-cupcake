@@ -1,0 +1,90 @@
+/* Layout responsivo para telas menores */
+@media (max-width: 768px) {
+    /* Layout de lista de cupcakes */
+    .cupcake-list {
+        flex-direction: column;
+    }
+
+    /* Itens individuais de cupcakes */
+    .cupcake-item {
+        flex: 0 0 100%;
+        max-width: 100%;
+        margin: 0;
+        padding: 10px;
+    }
+
+    /* Informações do cupcake no layout móvel */
+    .cupcake-info {
+        text-align: center;
+    }
+
+    /* Descrição do cupcake no layout móvel */
+    .cupcake-description {
+        font-size: 14px;
+    }
+
+    /* Botão de compra no layout móvel */
+    .buy-button {
+        font-size: 14px;
+    }
+
+    /* Seletor de quantidade no layout móvel */
+    .quantity-selector {
+        margin-top: 5px;
+    }
+
+    /* Estilo dos botões no seletor de quantidade no layout móvel */
+    .quantity-selector button {
+        font-size: 14px;
+        padding: 3px 6px;
+    }
+
+    /* Ícones do cabeçalho no layout móvel */
+    .header-icons {
+        padding-right: 10px;
+    }
+
+    .header {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .nav-links {
+        margin-top: 20px;
+    }
+
+    .nav-links li {
+        margin: 10px 0;
+    }
+
+    /* Estilos específicos para a versão de celular */
+    .header-toggle {
+        display: block;
+        cursor: pointer;
+        font-size: 24px;
+        padding: 10px;
+    }
+
+    .nav-links {
+        display: none; /* Oculta o menu */
+    }
+    table.detalhes-pedido {
+        font-size: 12px;
+    }
+
+    /* Oculte a imagem do cupcake em telas menores */
+    table.detalhes-pedido td img {
+        display: none;
+    }
+
+    /* Estilos para a lista de itens em telas menores */
+    ul.itens-pedido {
+        list-style: none;
+        padding: 0;
+    }
+    ul.itens-pedido li {
+        margin-bottom: 10px;
+    }
+}
+
+

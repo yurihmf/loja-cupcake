@@ -1,0 +1,316 @@
+/* Reset de estilos padrão */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(to right, #ff5f6d, #ffc371); /* Fundo gradiente colorido */
+    display: flex;
+    justify-content: center; /* Centraliza o conteúdo na horizontal */
+    align-items: center; /* Agora alinha o conteúdo ao centro verticalmente */
+    min-height: 100vh;
+    color: #fff; /* Cor do texto */
+    text-align: center; /* Centraliza o texto */
+    overflow: hidden; /* Esconde o conteúdo que ultrapassa o corpo */
+}
+
+/* Animação do fundo */
+@keyframes animateBackground {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+/* Estilo do conteúdo */
+.content {
+    background-color: rgba(255, 255, 255, 0.1); /* Fundo semi-transparente */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5); /* Sombra */
+    animation: fadeInUp 1s ease forwards; /* Animação de entrada */
+}
+
+/* Animação de entrada */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+/* Estilo para o botão de logout */
+.logout-button {
+    background-color: transparent;
+    color: #f79aa2; /* Cor do texto */
+    text-decoration: none;
+    font-size: 18px;
+    padding: 10px 20px;
+    border: 2px solid #f79aa2; /* Borda sólida */
+    border-radius: 50px; /* Forma arredondada */
+    transition: transform 0.3s ease, background-color 0.3s ease, color 0.3s ease; /* Transições suaves */
+    margin-left: auto; /* Alinha o botão à direita */
+    margin-top: 20px; /* Espaço entre o botão e o conteúdo */
+    position: relative; /* Para animações de pseudo-elementos */
+    overflow: hidden; /* Oculta o overflow */
+}
+
+.logout-button::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 200%;
+    height: 200%;
+    background-color: #f79aa2;
+    transition: transform 0.3s ease;
+    border-radius: 50%;
+    z-index: -1; /* Fica atrás do botão */
+    transform: translate(-50%, -50%) scale(0);
+}
+
+.logout-button:hover::before {
+    transform: translate(-50%, -50%) scale(1);
+}
+
+.logout-button:hover {
+    color: #fff; /* Altera a cor do texto ao passar o mouse */
+    background-color: #f79aa2; /* Altera a cor de fundo ao passar o mouse */
+    transform: translateY(-2px); /* Efeito de elevação */
+}
+
+.logout-button span {
+    position: relative;
+    z-index: 1; /* Fica na frente do pseudo-elemento */
+}
+
+.logout-button:focus {
+    outline: none; /* Remove o contorno ao focar */
+}
+
+
+/* Estilos do cabeçalho */
+.admin-header {
+    background: linear-gradient(to right, #f79aa2, #f79aa2); /* Gradiente de fundo */
+    color: #fff;
+    text-align: center;
+    padding: 20px;
+    width: 100%;
+    border-radius: 8px 8px 0 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative; /* Para efeitos de pseudo-elementos */
+    overflow: hidden; /* Oculta o overflow */
+}
+
+/* Efeito de brilho */
+.admin-header::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.1); /* Fundo semi-transparente */
+    animation: shimmer 2s linear infinite; /* Animação de brilho */
+}
+
+/* Animação de brilho */
+@keyframes shimmer {
+    0% {
+        transform: translateX(-100%);
+    }
+    100% {
+        transform: translateX(100%);
+    }
+}
+
+.admin-header h1 {
+    font-size: 28px;
+    margin-bottom: 10px;
+}
+
+.admin-header button {
+    background-color: transparent;
+    color: #fff;
+    border: 2px solid #fff;
+    padding: 8px 16px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.admin-header button:hover {
+    background-color: #fff;
+    color: #f79aa2;
+}
+
+.admin-header button:focus {
+    outline: none; /* Remove o contorno ao focar */
+}
+
+
+/* Estilo para o botão de logout */
+.logout-button {
+    background-color: #f79aa2;
+    color: #fff;
+    text-decoration: none;
+    font-size: 18px;
+    padding: 10px 20px;
+    border-radius: 30px;
+    transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
+    border: 2px solid transparent;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+}
+
+.logout-button::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 200%;
+    height: 200%;
+    background-color: rgba(255, 255, 255, 0.1);
+    transition: transform 0.3s ease;
+    border-radius: 50%;
+    z-index: -1;
+    transform: translate(-50%, -50%) scale(0);
+}
+
+.logout-button:hover::before {
+    transform: translate(-50%, -50%) scale(1);
+}
+
+.logout-button:hover {
+    background-color: #f79aa2;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.logout-button:focus {
+    outline: none;
+}
+
+.logout-button span {
+    position: relative;
+    z-index: 1;
+}
+
+
+/* Estilo para o menu administrativo */
+.admin-menu {
+    background: linear-gradient(to right, #f79aa2, #f79aa2); /* Gradiente de fundo */
+    color: #fff;
+    padding: 20px;
+    width: 250px;
+    border-radius: 0 0 10px 10px; /* Ajustado o raio do canto inferior esquerdo */
+    margin-top: 20px; /* Adicionado margem superior */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra suave */
+}
+
+.admin-menu h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+    color: #ff6b00;
+}
+
+.admin-menu ul {
+    list-style: none;
+    padding: 0;
+}
+
+.admin-menu ul li {
+    margin-bottom: 10px;
+}
+
+.admin-menu ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 20px;
+    transition: color 0.3s, background-color 0.3s; /* Transições suaves */
+    display: block;
+    padding: 8px;
+    border-radius: 5px;
+}
+
+.admin-menu ul li a:hover {
+    color: #ff6b00;
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.admin-content {
+    flex: 1;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.admin-content h3 {
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.admin-content p {
+    font-size: 18px;
+    color: #777;
+}
+
+
+.mensagem {
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    font-weight: bold;
+    display: inline-block;
+    transition: transform 0.3s ease, opacity 0.3s ease; /* Transições suaves */
+}
+
+.mensagem-sucesso {
+    background-color: #4CAF50;
+    color: #fff;
+}
+
+.mensagem-erro {
+    background-color: #f44336;
+    color: #fff;
+}
+
+.mensagem:hover {
+    transform: translateY(-5px); /* Efeito de levantamento ao passar o mouse */
+}
+
+.mensagem.fade-out {
+    opacity: 0; /* Opacidade reduzida para efeito de desaparecimento */
+    visibility: hidden; /* Oculta a mensagem */
+    transition: opacity 0.5s ease, visibility 0.5s ease;
+}
+
+
+/* Estilo para animação de fundo */
+@keyframes animateBackground {
+    0% {
+        background-position: 0 0;
+        filter: hue-rotate(0deg); /* Efeito de rotação de matiz */
+    }
+    100% {
+        background-position: 200% 0; /* Movimento lateral da imagem de fundo */
+        filter: hue-rotate(360deg); /* Rotação completa de matiz */
+    }
+}
+

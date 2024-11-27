@@ -1,0 +1,353 @@
+body {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(to right, #ff5f6d, #ffc371); /* Fundo gradiente colorido */
+    background-size: cover;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    position: relative;
+    overflow: hidden;
+}
+
+body::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to right, #ff5f6d, #ffc371); /* Fundo gradiente colorido */
+    mix-blend-mode: overlay; /* Mistura de cores com a imagem de fundo */
+    z-index: 1;
+    animation: animateGradient 15s ease infinite;
+}
+
+@keyframes animateGradient {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+/* Para garantir que o conteúdo esteja acima do gradiente */
+body > * {
+    position: relative;
+    z-index: 2;
+}
+
+
+.container {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.6)); /* Gradiente de fundo com transparência */
+    border-radius: 10px;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.3), 0px 0px 10px rgba(255, 255, 255, 0.5); /* Sombra mais pronunciada e dupla */
+    backdrop-filter: blur(10px); /* Efeito de desfoque de fundo */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Transição suave para transformações */
+}
+
+.container:hover {
+    transform: translateY(-10px); /* Efeito de elevação ao passar o mouse */
+    box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.4), 0px 0px 15px rgba(255, 255, 255, 0.6); /* Sombra mais pronunciada ao passar o mouse */
+}
+
+.page-title {
+    font-size: 32px;
+    text-align: center;
+    color: #f19da4;
+    margin-bottom: 20px;
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(to right, #ff5f6d, #ffc371); /* Fundo gradiente colorido */
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: animateText 5s linear infinite; /* Animação do gradiente de texto */
+}
+
+@keyframes animateText {
+    0% {
+        background-position: -200%;
+    }
+    100% {
+        background-position: 200%;
+    }
+}
+
+.page-title::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    width: 100px;
+    height: 5px;
+    background: linear-gradient(90deg, #ff6b00, #f19da4, #ff6b00); /* Gradiente de sublinhado */
+    border-radius: 5px;
+    transform: translateX(-50%);
+    animation: animateUnderline 2s linear infinite;
+}
+
+@keyframes animateUnderline {
+    0% {
+        width: 100px;
+    }
+    50% {
+        width: 200px;
+    }
+    100% {
+        width: 100px;
+    }
+}
+
+
+.flash-messages {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.flash-messages li {
+    background-color: linear-gradient(to right, #f19da4, #ffc371); /* Fundo gradiente colorido */
+    color: #fff;
+    padding: 15px;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: bold;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease, opacity 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.flash-messages li::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(120deg, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.1));
+    transform: translateX(-100%);
+    transition: transform 0.5s ease;
+    z-index: 0;
+}
+
+.flash-messages li:hover::before {
+    transform: translateX(100%);
+}
+
+.flash-messages li:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+}
+
+.flash-messages li .message-content {
+    position: relative;
+    z-index: 1;
+}
+
+
+.product-form {
+    display: grid;
+    gap: 15px;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(102, 51, 153, 0.3);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.product-form:hover {
+    transform: scale(1.02);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+}
+
+.form-group {
+    display: grid;
+    gap: 5px;
+    position: relative;
+}
+
+.form-group label {
+    font-size: 14px;
+    font-weight: bold;
+    color: #f19da4;
+    transition: color 0.3s;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 16px;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    border-color: #f19da4;
+    box-shadow: 0 0 5px #f19da4;
+    outline: none;
+}
+
+.form-group input::placeholder,
+.form-group select::placeholder,
+.form-group textarea::placeholder {
+    color: #f19da4;
+}
+
+.form-group .tooltip {
+    display: none;
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    background: rgba(102, 51, 153, 0.8);
+    color: #fff;
+    padding: 5px;
+    border-radius: 5px;
+    font-size: 12px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+.form-group input:hover + .tooltip,
+.form-group select:hover + .tooltip,
+.form-group textarea:hover + .tooltip {
+    display: block;
+}
+
+
+label {
+    font-weight: bold;
+    color: #f19da4; /* Cor mais vibrante */
+    font-size: 14px;
+    transition: color 0.3s;
+}
+
+input[type="text"],
+textarea,
+input[type="checkbox"] {
+    width: 100%;
+    padding: 10px; /* Aumentado para um padding mais confortável */
+    border-radius: 8px; /* Bordas mais arredondadas */
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    transition: all 0.3s ease;
+    background: rgba(255, 255, 255, 0.9); /* Fundo semitransparente */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra leve */
+    font-size: 16px;
+    position: relative;
+}
+
+input[type="text"]:focus,
+textarea:focus {
+    border-color: #f19da4;
+    box-shadow: 0 0 8px #f19da4;
+    outline: none;
+    background: rgba(255, 255, 255, 1); /* Fundo totalmente branco ao focar */
+}
+
+input[type="checkbox"] {
+    width: auto;
+    padding: 0;
+    margin-right: 10px; /* Espaço entre o checkbox e o label */
+    vertical-align: middle; /* Alinhamento vertical */
+    accent-color: #f19da4; /* Cor do checkbox */
+}
+
+textarea {
+    resize: vertical; /* Permite redimensionamento vertical */
+}
+
+input[type="text"]::placeholder,
+textarea::placeholder {
+    color: #f19da4; /* Placeholder com cor combinando */
+}
+
+input[type="text"]:hover,
+textarea:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra mais pronunciada ao passar o mouse */
+}
+
+/* Adicionando animação de foco para o label */
+input[type="text"]:focus + label,
+textarea:focus + label {
+    color: #5600cc; /* Cor mais vibrante ao focar */
+    transform: translateY(-5px); /* Leve movimento ao focar */
+}
+
+/* Efeito de borda animada */
+input[type="text"],
+textarea {
+    border: 2px solid transparent;
+    background-image: linear-gradient(to right, #f19da4, #5600cc), linear-gradient(to right, #fff, #fff);
+    background-origin: border-box;
+    background-clip: content-box, border-box;
+}
+
+
+.character-count {
+    font-size: 14px;
+    color: #f19da4; /* Cor combinando com o tema */
+    margin-top: 5px;
+    font-weight: bold;
+    transition: color 0.3s;
+}
+
+.character-count.active {
+    color: #5600cc; /* Cor diferente quando ativo */
+}
+
+.submit-button {
+    padding: 12px 20px; /* Tamanho ligeiramente maior para destaque */
+    background: linear-gradient(135deg, #f19da4, #5600cc); /* Gradiente de fundo */
+    color: #fff;
+    border: none;
+    border-radius: 25px; /* Bordas mais arredondadas para um look moderno */
+    cursor: pointer;
+    transition: all 0.3s ease; /* Transição suave para todas as propriedades */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Sombra suave */
+    position: relative;
+    overflow: hidden;
+    z-index: 0;
+}
+
+.submit-button::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 300%;
+    height: 300%;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.4), transparent 60%);
+    transition: all 0.5s;
+    transform: translate(-50%, -50%) scale(0.1);
+    opacity: 0;
+    z-index: -1;
+}
+
+.submit-button:hover::before {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+}
+
+.submit-button:hover {
+    background: linear-gradient(135deg, #5600cc, #f19da4); /* Gradiente invertido */
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3); /* Sombra mais pronunciada */
+}
+
+.submit-button:active {
+    transform: scale(0.98); /* Leve redução ao clicar */
+}

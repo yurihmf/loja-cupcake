@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Painel de Controle</title>
+    <!-- Link para o arquivo CSS externo -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='dashboard.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='mediaSmartphone.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        // Função para fechar a caixa de diálogo de erro
+        function closeErrorDialog() {
+            var errorDialog = document.querySelector('.error-dialog');
+            var overlay = document.querySelector('.overlay');
+
+            // Ocultar a caixa de diálogo e a sobreposição
+            errorDialog.style.display = 'none';
+            overlay.style.display = 'none';
+        }
+        function incrementQuantity(id) {
+            const input = document.getElementById(id);
+            input.stepUp();
+            updateQuantityField(id);
+        }
+
+        function decrementQuantity(id) {
+            const input = document.getElementById(id);
+            input.stepDown();
+            updateQuantityField(id);
+        }
+
+        function updateQuantityField(id) {
+            const input = document.getElementById(id);
+            const hiddenInput = document.getElementById('quantidade-hidden-' + id.split('-')[1]);
+            hiddenInput.value = input.value;
+        }
+        // JavaScript para abrir o modal
+        function abrirModal(imagemUrl) {
+            var modal = document.getElementById("imagemModal");
+            var modalImg = document.getElementById("imagemModalHD");
+            modal.style.display = "block";
+            modalImg.src = imagemUrl;
+            modalImg.classList.add("modal-img"); // Aplica a classe para centralizar a imagem
+        }
+
+        // JavaScript para fechar o modal
+        function fecharModal() {
+                var modal = document.getElementById("imagemModal");
+                modal.style.display = "none";
+            }
+            document.addEventListener("keydown", function (event) {
+            if (event.key === "Escape") {
+                fecharModal();
+            }
+        });
+        // Adicionar um event listener ao fundo escuro do modal
+        var fundoModal = document.getElementById("imagemModal");
+        fundoModal.addEventListener("click", function (event) {
+            if (event.target === fundoModal) {
+                fecharModal();
+            }
+        });
+
+    </script>
+</head>
+<body>
+    <div class="header">
+        <h1 class="welcome-message">OLÁ, {{ usuario[1] }}!</h1>
+        <div class="header-icons">
+            <!-- Ícones no cabeçalho -->
+            <a href="/listar_pedidos">
+                <i class="fas fa-star"></i> Avaliar Pedidos
+            </a>
+            <a href="/edit_profile" class="icon-link edit-profile-link" title="Editar perfil">
+                <i class="fas fa-user icon-user"></i>
+            </a>
+            <a href="/carrinho" class="icon-link carrinho-link" title="Carrinho de Compras">
+                <i class="fas fa-shopping-cart icon-cart"></i>
+            </a>
+            <a href="/logout" class="icon-link logout-button" title="Sair">
+                <i class="fas fa-sign-out-alt icon-logout"></i>
+            </a>
+        </div>
+    </div>
+    <div class="content">
+        {% if messages %}
+            <ul class="flash-messages">
+                {% for message in messages %}
+                    <li class="flash-message">{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+        <!-- Conteúdo da Frente de Loja -->
+        <div class="cupcake-list">
+            <!-- Modal pop-up para a imagem grande -->
+            <div id="imagemModal" class="modal">
+                <span class="fechar-modal" onclick="fecharModal()">&times;</span>
+                <img class="modal-conteudo" id="imagemModalHD">
+            </div>
+            <h1>Doces Imperdíveis</h1>
+            <ul class="cupcake-items">
+                {% for cupcake in cupcakes %}
+                    {% if cupcake['disponivel'] %}
+                        <li class="cupcake-item">
+                            <div class="cupcake-image">
+                                <img src="{{ cupcake['imagem_url'] }}" alt="{{ cupcake['nome'] }}" onclick="abrirModal('{{ cupcake['imagem_url'] }}')">
+                            </div>
+                            <div class="cupcake-info">
+                                <h2 class="cupcake-name">{{ cupcake['nome'] }}</h2>
+                                <p class="cupcake-description">{{ cupcake['descricao'] }}</p>
+                                <p class="cupcake-price">Preço: R$ {{ cupcake['preco'] }}</p>
+                                <!-- Seletor de quantidade personalizado -->
+                                <div class="quantity-selector">
+                                    <button onclick="decrementQuantity('quantidade-{{ cupcake['id'] }}')">-</button>
+                                    <input type="number" id="quantidade-{{ cupcake['id'] }}" class="quantidade" min="1" value="1">
+                                    <button onclick="incrementQuantity('quantidade-{{ cupcake['id'] }}')">+</button>
+                                </div>
+                                <!-- Formulário para adicionar ao carrinho -->
+                                <form method="POST" action="/adicionar_ao_carrinho">
+                                    <input type="hidden" name="cupcake_id" step="1" value="{{ cupcake['id'] }}">
+                                    <input type="hidden" name="quantidade" id="quantidade-hidden-{{ cupcake['id'] }}" value="1"> <!-- Campo oculto para a quantidade -->
+                                    <button type="submit" class="buy-button">Adicionar ao carrinho</button>
+                                </form>
+                            </div>
+                        </li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+            <ul class="cupcake-items">
+                {% for cupcake in cupcakes %}
+                    {% if not cupcake['disponivel'] %}
+                        <li class="cupcake-item unavailable">
+                            <div class="cupcake-image">
+                                <img src="{{ cupcake['imagem_url'] }}" alt="{{ cupcake['nome'] }}" onclick="abrirModal('{{ cupcake['imagem_url'] }}')">
+                            </div>
+                            <div class="cupcake-info">
+                                <h2 class="cupcake-name">{{ cupcake['nome'] }}</h2>
+                                <p class="cupcake-description">{{ cupcake['descricao'] }}</p>
+                                <p class="cupcake-price">Preço: R$ {{ cupcake['preco'] }}</p>
+                            </div>
+                        </li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</body>
+</html>

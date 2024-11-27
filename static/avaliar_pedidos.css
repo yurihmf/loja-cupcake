@@ -1,0 +1,851 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto', sans-serif; /* Fonte mais futurista */
+    background-color: linear-gradient(to right, #ff5f6d, #ffc371); /* Fundo gradiente futurista */
+    background: linear-gradient(to right, #ff5f6d, #ffc371); /* Fundo gradiente futurista */
+
+}
+
+/* Adicionando transições suaves para elementos interativos */
+body, a, button, input, select, textarea {
+    transition: color 0.3s ease-in-out, background-color 0.3s ease-in-out, border-color 0.3s ease-in-out;
+    background: linear-gradient(to right, #ff5f6d, #ffc371); /* Fundo gradiente futurista */
+
+}
+
+/* Estilo para links */
+a {
+    color: #ffc371; /* Cor dos links */
+    text-decoration: none;
+}
+
+a:hover {
+    color: #000000; /* Cor dos links ao passar o mouse */
+}
+
+/* Estilo para botões */
+button {
+    padding: 10px 20px;
+    background-color: #ff5e62; /* Cor de fundo dos botões */
+    color: #000000; /* Cor do texto dos botões */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #e74c3c; /* Cor de fundo dos botões ao passar o mouse */
+}
+
+/* Estilo para inputs */
+input[type="text"],
+input[type="email"],
+input[type="password"],
+textarea,
+select {
+    padding: 10px;
+    background-color: #000000; /* Cor de fundo dos inputs */
+    color: #333; /* Cor do texto dos inputs */
+    border: 1px solid #000000; /* Borda dos inputs */
+    border-radius: 5px;
+    box-sizing: border-box; /* Garante que o padding não afete o tamanho total */
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus,
+textarea:focus,
+select:focus {
+    border-color: #ffc371; /* Cor da borda ao focar nos inputs */
+}
+
+
+.container {
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto', sans-serif; /* Fonte mais futurista */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-color: #ff5f6d; /* Cor de fundo mais escura */
+    color: #000000; /* Cor do texto */
+    border-radius: 10px; /* Borda arredondada */
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2); /* Sombra suave */
+    transition: transform 0.3s ease-in-out; /* Transição suave ao passar o mouse */
+}
+
+.container:hover {
+    transform: scale(1.02); /* Efeito de escala ao passar o mouse */
+}
+
+/* Estilo para links dentro da .container */
+.container a {
+    color: #ffc371; /* Cor dos links */
+    text-decoration: none;
+    transition: color 0.3s ease-in-out; /* Transição suave da cor do link */
+}
+
+.container a:hover {
+    color: #000000; /* Cor do link ao passar o mouse */
+}
+
+
+h1 {
+    background-color: #ffc371; /* Cor de fundo mais vibrante */
+    color: #000000; /* Cor do texto */
+    padding: 20px;
+    text-align: center;
+    margin: 0;
+    border-radius: 10px; /* Borda arredondada */
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2); /* Sombra suave */
+    transition: transform 0.3s ease-in-out; /* Transição suave ao passar o mouse */
+}
+
+h1:hover {
+    transform: scale(1.05); /* Efeito de escala ao passar o mouse */
+}
+
+
+table {
+    margin-top: 20px;
+    border-collapse: collapse;
+    background-color: #121212; /* Cor de fundo mais escura */
+    color: #000000; /* Cor do texto */
+    width: 100%;
+    border-radius: 10px; /* Borda arredondada */
+    overflow: hidden; /* Esconde as bordas arredondadas fora da tabela */
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2); /* Sombra suave */
+    transition: transform 0.3s ease-in-out; /* Transição suave ao passar o mouse */
+}
+
+table th,
+table td {
+    padding: 12px; /* Aumenta o espaçamento interno das células */
+    text-align: left; /* Alinhamento do texto nas células */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1); /* Borda inferior nas células */
+}
+
+table th {
+    background-color: #ffc371; /* Cor de fundo do cabeçalho */
+    color: #000000; /* Cor do texto do cabeçalho */
+    font-weight: bold; /* Texto em negrito no cabeçalho */
+}
+
+table tr:hover {
+    background-color: rgba(255, 255, 255, 0.1); /* Cor de fundo ao passar o mouse */
+}
+
+table:hover {
+    transform: translateY(-3px); /* Efeito de elevação ao passar o mouse */
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3); /* Sombra mais pronunciada ao passar o mouse */
+}
+
+
+.item-pedido-detalhes {
+    background-color: #121212; /* Cor de fundo mais escura */
+    color: #000000; /* Cor do texto */
+    border: 1px solid #ffc371; /* Borda sólida com cor vibrante */
+    padding: 15px; /* Aumenta o espaçamento interno */
+    margin-top: 10px;
+    border-radius: 10px; /* Borda arredondada */
+    box-shadow: 0px 0px 10px rgba(0, 204, 255, 0.5); /* Sombra suave */
+    transition: transform 0.3s ease-in-out; /* Transição suave ao passar o mouse */
+}
+
+.item-pedido-detalhes:hover {
+    transform: translateY(-3px); /* Efeito de elevação ao passar o mouse */
+    box-shadow: 0px 5px 15px rgba(0, 204, 255, 0.8); /* Sombra mais pronunciada ao passar o mouse */
+}
+
+
+.linha-pedido {
+    transition: background-color 0.3s ease-in-out; /* Transição suave da cor de fundo */
+}
+
+.linha-pedido:hover {
+    background-color: #ffc371; /* Cor de fundo mais vibrante ao passar o mouse */
+    color: #000000; /* Cor do texto ao passar o mouse */
+    cursor: pointer;
+}
+
+
+.itens-pedido {
+    display: none;
+    background-color: #121212; /* Cor de fundo mais escura */
+    color: #000000; /* Cor do texto */
+    border: 1px solid #ffc371; /* Borda sólida com cor vibrante */
+    padding: 15px; /* Aumenta o espaçamento interno */
+    margin-top: 5px;
+    border-radius: 10px; /* Borda arredondada */
+    box-shadow: 0px 0px 10px rgba(0, 204, 255, 0.5); /* Sombra suave */
+    transition: transform 0.3s ease-in-out; /* Transição suave ao passar o mouse */
+}
+
+.itens-pedido:hover {
+    transform: translateY(-3px); /* Efeito de elevação ao passar o mouse */
+    box-shadow: 0px 5px 15px rgba(0, 204, 255, 0.8); /* Sombra mais pronunciada ao passar o mouse */
+}
+
+
+.cupcake-img {
+    max-width: 100px;
+    max-height: 100px;
+    display: block;
+    margin: 0 auto;
+    border-radius: 50%; /* Borda arredondada para criar uma aparência mais suave */
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2); /* Sombra suave */
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out; /* Transições suaves */
+}
+
+.cupcake-img:hover {
+    transform: scale(1.1); /* Efeito de escala ao passar o mouse */
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.3); /* Sombra mais pronunciada ao passar o mouse */
+}
+
+
+.item-pedido-detalhes {
+    background-color: #121212; /* Cor de fundo mais escura */
+    color: #000000; /* Cor do texto */
+    border: 1px solid #ffc371; /* Borda sólida com cor vibrante */
+    padding: 15px; /* Aumenta o espaçamento interno */
+    margin-top: 10px;
+    border-radius: 10px; /* Borda arredondada */
+    box-shadow: 0px 0px 10px rgba(0, 204, 255, 0.5); /* Sombra suave */
+    transition: transform 0.3s ease-in-out; /* Transição suave ao passar o mouse */
+}
+
+.item-pedido-detalhes:hover {
+    transform: translateY(-3px); /* Efeito de elevação ao passar o mouse */
+    box-shadow: 0px 5px 15px rgba(0, 204, 255, 0.8); /* Sombra mais pronunciada ao passar o mouse */
+}
+
+.itens-pedido {
+    display: none;
+    background-color: #121212; /* Cor de fundo mais escura */
+    color: #000000; /* Cor do texto */
+    border: 1px solid #ffc371; /* Borda sólida com cor vibrante */
+    padding: 15px; /* Aumenta o espaçamento interno */
+    margin-top: 5px; /* Diminui um pouco o espaçamento superior */
+    border-radius: 10px; /* Borda arredondada */
+    box-shadow: 0px 0px 10px rgba(0, 204, 255, 0.5); /* Sombra suave */
+    transition: transform 0.3s ease-in-out; /* Transição suave ao passar o mouse */
+}
+
+.itens-pedido:hover {
+    transform: translateY(-3px); /* Efeito de elevação ao passar o mouse */
+    box-shadow: 0px 5px 15px rgba(0, 204, 255, 0.8); /* Sombra mais pronunciada ao passar o mouse */
+}
+
+
+.pedido-container {
+    border: 1px solid #ffc371; /* Borda sólida com cor vibrante */
+    margin: 10px;
+    padding: 20px; /* Aumenta o espaçamento interno */
+    background-color: #121212; /* Cor de fundo mais escura */
+    color: #000000; /* Cor do texto */
+    box-shadow: 0px 4px 10px rgba(0, 204, 255, 0.2); /* Sombra suave */
+    border-radius: 10px; /* Borda arredondada */
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out; /* Transições suaves */
+    text-align: center;
+}
+
+.pedido-container:hover {
+    transform: translateY(-3px); /* Efeito de elevação ao passar o mouse */
+    box-shadow: 0px 8px 20px rgba(0, 204, 255, 0.4); /* Sombra mais pronunciada ao passar o mouse */
+}
+
+
+/* Estilo para a tela modal */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.7);
+    transition: opacity 0.3s ease-in-out; /* Adicionando transição suave */
+}
+
+/* Mostrar a tela modal */
+.modal.show {
+    display: block;
+}
+
+/* Estilo do conteúdo da tela modal */
+.modal-content {
+    background-color: #121212; /* Cor de fundo mais escura */
+    color: #000000; /* Cor do texto */
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #ffc371; /* Borda sólida com cor vibrante */
+    width: 80%;
+    border-radius: 10px; /* Borda arredondada */
+    box-shadow: 0 4px 10px rgba(0, 204, 255, 0.4); /* Sombra suave */
+    transition: transform 0.3s ease-in-out; /* Transição suave */
+}
+
+/* Efeito de escala ao passar o mouse sobre o conteúdo da tela modal */
+.modal-content:hover {
+    transform: scale(1.05);
+}
+
+/* Estilo para o botão de fechar a tela modal */
+.modal-close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    color: #000000; /* Cor do texto do botão */
+    cursor: pointer;
+    transition: color 0.3s ease-in-out; /* Transição suave */
+}
+
+/* Efeito de mudança de cor ao passar o mouse sobre o botão de fechar */
+.modal-close:hover {
+    color: #ffc371; /* Cor do texto do botão ao passar o mouse */
+}
+
+
+
+.close {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    font-size: 24px; /* Aumenta o tamanho do ícone */
+    font-weight: bold;
+    cursor: pointer;
+    color: #000000; /* Cor do ícone */
+    transition: color 0.3s ease-in-out; /* Transição suave */
+}
+
+/* Efeito de mudança de cor ao passar o mouse sobre o botão de fechar */
+.close:hover {
+    color: #ffc371; /* Cor do ícone ao passar o mouse */
+}
+
+
+.cupcake-modal-img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px; /* Borda arredondada */
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2); /* Sombra suave */
+    transition: transform 0.3s ease-in-out; /* Transição suave */
+}
+
+.cupcake-modal-img:hover {
+    transform: scale(1.1); /* Efeito de escala ao passar o mouse */
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.3); /* Sombra mais pronunciada ao passar o mouse */
+}
+
+
+
+/* Estilo do título da modal */
+.modal-title {
+    font-size: 28px; /* Aumenta o tamanho da fonte */
+    font-weight: bold;
+    margin-bottom: 15px; /* Aumenta o espaçamento inferior */
+    color: #000000; /* Cor do texto */
+}
+
+/* Estilo do conteúdo da modal */
+.modal-details {
+    margin-top: 30px; /* Aumenta o espaçamento superior */
+    color: #000000; /* Cor do texto */
+}
+
+/* Estilo do botão de fechar (x) */
+.close {
+    position: absolute;
+    right: 20px; /* Ajusta a posição para a direita */
+    top: 20px; /* Ajusta a posição para cima */
+    font-size: 24px; /* Aumenta o tamanho do ícone */
+    font-weight: bold;
+    cursor: pointer;
+    color: #000000; /* Cor do ícone */
+    transition: color 0.3s ease-in-out; /* Transição suave */
+}
+
+/* Efeito de mudança de cor ao passar o mouse sobre o botão de fechar */
+.close:hover {
+    color: #ffc371; /* Cor do ícone ao passar o mouse */
+}
+
+
+/* Estilos do botão "Voltar" */
+.voltar-button {
+    text-decoration: none;
+    color: #000000; /* Cor do texto */
+    font-size: 20px; /* Aumenta o tamanho da fonte */
+    margin-right: 20px;
+    padding: 10px 20px; /* Adiciona padding para melhorar a aparência */
+    border-radius: 5px; /* Borda arredondada */
+    background-color: #000000; /* Cor de fundo */
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1); /* Sombra suave */
+    transition: background-color 0.3s, box-shadow 0.3s, transform 0.3s ease-in-out; /* Transições suaves */
+}
+
+/* Efeito de hover */
+.voltar-button:hover {
+    background-color: #007acc; /* Altera a cor de fundo ao passar o mouse */
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); /* Sombra mais pronunciada ao passar o mouse */
+    transform: translateY(-2px); /* Efeito de elevação ao passar o mouse */
+}
+
+/* Estilo para imagens de cupcakes */
+.cupcake-img {
+    max-width: 100px;
+    max-height: 100px;
+    display: block;
+    margin: 0 auto;
+    cursor: pointer; /* Define o cursor como uma mão ao passar o mouse */
+    border-radius: 50%; /* Borda arredondada para criar uma aparência mais suave */
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2); /* Sombra suave */
+    transition: transform 0.3s ease-in-out; /* Transição suave */
+}
+
+/* Efeito de escala ao passar o mouse */
+.cupcake-img:hover {
+    transform: scale(1.1); /* Aumenta a escala ao passar o mouse */
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.3); /* Sombra mais pronunciada ao passar o mouse */
+}
+
+/* Estilos para a classificação por estrelas */
+/* Estilo para a class .rating */
+.rating {
+    display: inline-block;
+    unicode-bidi: bidi-override;
+    direction: rtl;
+    font-size: 0; /* Remove o espaço entre os elementos */
+  }
+  
+  /* Estilo para o input da class .rating */
+  .rating input {
+    display: none;
+  }
+  
+  /* Estilo para a label da class .rating */
+  .rating label {
+    display: inline-block;
+    padding: 5px;
+    font-size: 24px;
+    color: transparent; /* Torna o texto transparente */
+    cursor: pointer;
+    transition: color 0.3s ease-in-out; /* Transição suave */
+  }
+  
+  /* Estilo para a estrela preenchida */
+  .rating label:before {
+    content: "\2605"; /* Código Unicode para uma estrela preenchida */
+    color: #000000; /* Cor das estrelas vazias */
+  }
+  
+  /* Estilo para a estrela preenchida quando o input está checado */
+  .rating input:checked ~ label:before {
+    color: #FFD700; /* Cor das estrelas preenchidas */
+  }
+  
+/* Estilo base para a estrela */
+/* Estilo para a estrela */
+.star {
+    width: 30px;
+    height: 30px;
+    background-image: url('https://casaeconstrucao.org/wp-content/uploads/2019/08/molde-de-estrela-9.png'); /* Use sua imagem de estrela ou um ícone de sua escolha */
+    background-size: cover;
+    display: inline-block;
+    cursor: pointer;
+    -webkit-user-select: none; /* Safari */
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* IE 10+ */
+    user-select: none; /* Padrão */
+    transition: transform 0.3s ease-in-out, filter 0.3s ease-in-out; /* Transições suaves */
+}
+
+/* Estilo para a estrela quando está ativa */
+.star.active {
+    background-image: url('https://th.bing.com/th/id/OIP._MlGs1SfLXP1zvaSYJMWCgHaH3?pid=ImgDet&rs=1'); /* Use sua imagem de estrela preenchida ou ícone preenchido */
+    filter: drop-shadow(0px 0px 5px rgba(255, 215, 0, 0.5)); /* Adiciona uma sombra amarela ao redor da estrela preenchida */
+    transform: scale(1.2); /* Aumenta ligeiramente o tamanho da estrela preenchida */
+}
+
+
+/* Estilo para o formulário */
+form {
+    width: 100%;
+    max-width: 400px;
+    padding: 20px;
+    border: 1px solid #ffc371; /* Cor da borda */
+    background-color: #121212; /* Cor de fundo mais escura */
+    color: #000000; /* Cor do texto */
+    border-radius: 10px; /* Borda arredondada */
+    box-shadow: 0 4px 10px rgba(0, 204, 255, 0.2); /* Sombra suave */
+    transition: transform 0.3s ease-in-out; /* Transição suave */
+}
+
+/* Efeito de elevação ao passar o mouse sobre o formulário */
+form:hover {
+    transform: translateY(-3px); /* Aumenta a elevação */
+    box-shadow: 0 8px 20px rgba(0, 204, 255, 0.4); /* Sombra mais pronunciada */
+}
+
+
+/* Estilo para o rótulo */
+label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 10px;
+    color: #000000; /* Cor do texto */
+    transition: transform 0.3s ease-in-out; /* Transição suave */
+}
+
+/* Efeito de escala ao passar o mouse sobre o rótulo */
+label:hover {
+    transform: scale(1.05); /* Aumenta a escala ao passar o mouse */
+}
+
+
+/* Estilo para o campo de texto (textarea) */
+textarea {
+    width: 100%;
+    font-size: 16px;
+    border: 1px solid #ffc371; /* Cor da borda */
+    border-radius: 10px; /* Borda arredondada */
+    max-height: 200px; /* Aumenta a altura máxima */
+    resize: none;
+    text-align: center; /* Centraliza horizontalmente o texto */
+    padding: 20px; /* Aumenta o espaço interno */
+    background-color: #121212; /* Cor de fundo mais escura */
+    color: #000000; /* Cor do texto */
+    box-shadow: 0 2px 5px rgba(0, 204, 255, 0.2); /* Sombra suave */
+    transition: border-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out; /* Transições suaves */
+}
+
+/* Efeito de foco ao passar o mouse sobre o campo de texto */
+textarea:focus {
+    border-color: #007acc; /* Cor da borda quando em foco */
+    box-shadow: 0 4px 10px rgba(0, 204, 255, 0.4); /* Sombra mais pronunciada quando em foco */
+}
+
+
+/* Estilo base para o botão de envio */
+input[type="submit"] {
+    background-color: #663399; /* Cor de fundo original (#663399) */
+    color: #000000;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s ease-in-out; /* Transições suaves */
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3); /* Sombra suave */
+}
+
+/* Efeito de hover */
+input[type="submit"]:hover {
+    background-color: #0056b3; /* Nova cor de fundo ao passar o mouse (#0056b3) */
+    transform: translateY(-2px); /* Efeito de elevação ao passar o mouse */
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5); /* Sombra mais pronunciada ao passar o mouse */
+}
+
+/* Estilo para o container que envolve o formulário */
+.container_comm {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: auto; /* Altura total da viewport */
+}
+
+/* Estilos para pedidos não avaliados */
+.nao-avaliado, .avaliado {
+    border: 2px solid transparent; /* Borda inicialmente transparente */
+    background-color: #f4f4f4; /* Fundo mais claro para destacar o conteúdo */
+    padding: 15px; /* Espaçamento interno aumentado */
+    margin: 10px; /* Espaçamento externo ao redor da caixa */
+    display: inline-block; /* Torna as caixas exibidas em linha */
+    border-radius: 10px; /* Borda arredondada para suavizar cantos */
+    font-weight: bold; /* Texto em negrito */
+    color: #333; /* Cor do texto padrão */
+    transition: background-color 0.3s ease-in-out, transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out, border-color 0.3s ease-in-out; /* Transições suaves */
+    cursor: pointer; /* Cursor de ponteiro ao passar o mouse */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sombra suave */
+}
+
+/* Estilos específicos para pedidos não avaliados */
+.nao-avaliado {
+    border-color: #ff0000; /* Borda vermelha sólida para pedidos não avaliados */
+}
+
+/* Estilos específicos para pedidos avaliados */
+.avaliado {
+    border-color: #008000; /* Borda verde sólida para pedidos avaliados */
+}
+
+/* Efeito de hover */
+.nao-avaliado:hover, .avaliado:hover {
+    background-color: #eaeaea; /* Fundo mais claro ao passar o mouse */
+    transform: translateY(-2px); /* Efeito de elevação ao passar o mouse */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra mais pronunciada ao passar o mouse */
+}
+
+
+/* Estilo para a tabela */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    border-radius: 10px; /* Borda arredondada para suavizar cantos */
+    overflow: hidden; /* Oculta qualquer conteúdo que ultrapasse a tabela */
+}
+
+table, th, td {
+    border: 1px solid transparent; /* Borda inicialmente transparente */
+}
+
+th, td {
+    padding: 15px; /* Espaçamento interno aumentado */
+    text-align: center; /* Centraliza o texto */
+    transition: background-color 0.3s ease-in-out, transform 0.3s ease-in-out; /* Transições suaves */
+}
+
+th {
+    background-color: #e0887f; /* Cor de fundo para os cabeçalhos */
+    color: #000000; /* Cor do texto para os cabeçalhos */
+}
+
+/* Efeito de hover para células da tabela */
+th:hover, td:hover {
+    background-color: rgba(60, 218, 152, 0.2); /* Fundo mais claro ao passar o mouse */
+    transform: translateY(-2px); /* Efeito de elevação ao passar o mouse */
+}
+
+/* Estilo para a imagem do cupcake */
+img {
+    max-width: 100px;
+    height: auto;
+    border-radius: 5px; /* Borda arredondada para suavizar cantos */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sombra suave */
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out; /* Transições suaves */
+    cursor: pointer; /* Cursor de ponteiro ao passar o mouse */
+}
+
+/* Efeito de hover para a imagem do cupcake */
+img:hover {
+    transform: scale(1.05); /* Aumenta a escala ao passar o mouse */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra mais pronunciada ao passar o mouse */
+}
+
+/* Estilo para os detalhes do pedido */
+h2 {
+    font-size: 28px; /* Aumenta o tamanho do título */
+    margin-bottom: 20px;
+    color: #333; /* Cor do texto */
+}
+
+p {
+    font-size: 18px; /* Aumenta o tamanho do texto */
+    margin-bottom: 15px; /* Espaçamento inferior aumentado */
+    color: #666; /* Cor do texto mais escura */
+}
+
+h3 {
+    font-size: 24px; /* Aumenta o tamanho do subtítulo */
+    margin-top: 30px; /* Espaçamento superior aumentado */
+    margin-bottom: 15px; /* Espaçamento inferior aumentado */
+    color: #444; /* Cor do texto mais escura */
+}
+
+/* Estilo para elementos clicáveis */
+.clickable {
+    cursor: pointer;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out; /* Transições suaves */
+    border-radius: 5px; /* Borda arredondada para suavizar cantos */
+    overflow: hidden; /* Oculta qualquer conteúdo que ultrapasse */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sombra suave */
+}
+
+/* Efeito de hover */
+.clickable:hover {
+    transform: translateY(-2px); /* Efeito de elevação ao passar o mouse */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Sombra mais pronunciada ao passar o mouse */
+}
+
+
+/* Estilos para a tabela de detalhes do pedido */
+table.detalhes-pedido {
+    width: 100%;
+    border-collapse: collapse;
+    border-radius: 5px; /* Borda arredondada para suavizar cantos */
+    overflow: hidden; /* Oculta qualquer conteúdo que ultrapasse a tabela */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sombra suave */
+}
+
+table.detalhes-pedido th,
+table.detalhes-pedido td {
+    border: 1px solid transparent; /* Borda inicialmente transparente */
+    padding: 12px; /* Espaçamento interno aumentado */
+    text-align: left;
+}
+
+table.detalhes-pedido th {
+    background-color: #e0887f; /* Cor de fundo para os cabeçalhos */
+    color: #000000; /* Cor do texto para os cabeçalhos */
+}
+
+/* Efeito de hover para células da tabela */
+table.detalhes-pedido th:hover,
+table.detalhes-pedido td:hover {
+    background-color: rgba(60, 218, 152, 0.2); /* Fundo mais claro ao passar o mouse */
+}
+
+/* Adicione estilos específicos para telas menores (por exemplo, telas com largura máxima de 600px) */
+@media (max-width: 600px) {
+    table.detalhes-pedido th,
+    table.detalhes-pedido td {
+        padding: 10px; /* Reduza o espaçamento interno */
+    }
+
+    /* Ajuste a largura da tabela para caber na tela */
+    table.detalhes-pedido {
+        width: 100%;
+    }
+}
+
+
+/* Estilo para o contêiner de detalhes do pedido */
+.pedido-details {
+    background-color: #f4f4f4; /* Alterado para uma cor mais clara */
+    border: 2px solid transparent; /* Borda inicialmente transparente */
+    border-radius: 10px; /* Borda arredondada para suavizar cantos */
+    padding: 20px;
+    margin: 20px 0;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s ease-in-out, border-color 0.3s ease-in-out, transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out; /* Transições suaves */
+    cursor: pointer; /* Cursor de ponteiro ao passar o mouse */
+}
+
+/* Efeito de hover */
+.pedido-details:hover {
+    background-color: #eaeaea; /* Fundo mais claro ao passar o mouse */
+    border-color: #e0887f; /* Borda colorida ao passar o mouse */
+    transform: translateY(-2px); /* Efeito de elevação ao passar o mouse */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); /* Sombra mais pronunciada ao passar o mouse */
+}
+
+/* Estilo para o título "Detalhes do Pedido" */
+.pedido-title {
+    font-size: 28px; /* Aumenta o tamanho do título */
+    color: #333;
+    margin-bottom: 15px; /* Espaçamento inferior aumentado */
+}
+
+/* Estilo para as informações do pedido (ID, Cliente, Endereço) */
+.pedido-info p {
+    font-size: 18px; /* Aumenta o tamanho do texto */
+    margin: 8px 0; /* Espaçamento vertical */
+    color: #666; /* Cor do texto mais escura */
+}
+
+
+/* Estilo para a tabela de itens */
+.itens-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+    background-color: #000000; /* Alterado para uma cor de fundo branca */
+    border: 2px solid transparent; /* Borda inicialmente transparente */
+    border-radius: 10px; /* Borda arredondada para suavizar cantos */
+    overflow: hidden; /* Oculta qualquer conteúdo que ultrapasse a tabela */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sombra suave */
+    transition: background-color 0.3s ease-in-out, border-color 0.3s ease-in-out, transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out; /* Transições suaves */
+}
+
+/* Estilo para o cabeçalho da tabela */
+.itens-table th {
+    background-color: #e0887f; /* Cor de fundo do cabeçalho (verde) */
+    color: white; /* Cor do texto do cabeçalho (branco) */
+    padding: 12px; /* Espaçamento interno aumentado */
+    border: 2px solid transparent; /* Borda inicialmente transparente */
+    border-radius: 5px; /* Borda arredondada para suavizar cantos */
+    text-align: left;
+}
+
+/* Estilo para as células da tabela */
+.itens-table td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: left;
+}
+
+/* Efeito de hover para linhas da tabela */
+.itens-table tr:hover {
+    background-color: #f2f2f2; /* Fundo mais claro ao passar o mouse */
+    transform: translateY(-2px); /* Efeito de elevação ao passar o mouse */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra mais pronunciada ao passar o mouse */
+}
+
+/* Estilo para a imagem do cupcake */
+.cupcake-image img {
+    max-width: 100px;
+    max-height: 100px;
+    border-radius: 50%; /* Transforma a borda em um círculo */
+    border: 3px solid #e0887f; /* Borda colorida e mais grossa */
+    transition: border-color 0.3s ease-in-out; /* Transição suave para a cor da borda */
+}
+
+.cupcake-image img:hover {
+    border-color: #e0887f; /* Altera a cor da borda ao passar o mouse */
+}
+
+/* Estilo para a mensagem de nenhum pedido */
+.no-pedidos-message {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    text-align: center;
+    background-color: #f9f9f9; /* Cor de fundo para destacar a mensagem */
+}
+
+.no-pedidos-message p {
+    font-size: 32px;
+    font-weight: bold;
+    color: #333; /* Cor do texto mais escura */
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra mais pronunciada */
+    transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out; /* Transições suaves */
+}
+
+.no-pedidos-message p:hover {
+    background-color: #e0887f; /* Altera a cor de fundo ao passar o mouse */
+    color: #000000; /* Altera a cor do texto ao passar o mouse */
+}
+
+/* Estilos CSS */
+.pedir-cupcake-link {
+    display: inline-block;
+    text-align: center;
+    margin-top: 20px;
+    font-weight: bold;
+    text-decoration: none;
+    color: #000000; /* Alterado para uma cor de texto mais clara */
+    background-color: #e0887f; /* Cor de fundo inicial */
+    padding: 15px 25px;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra suave */
+    transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease; /* Transições suaves */
+}
+
+.pedir-cupcake-link:hover {
+    background-color: #e0887f; /* Cor de fundo ao passar o mouse */
+    transform: translateY(-2px); /* Efeito de elevação */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); /* Sombra mais pronunciada ao passar o mouse */
+}
+
+/* Estilo para quando o link é clicado */
+.pedir-cupcake-link:active {
+    transform: translateY(1px); /* Efeito de pressionar ao clicar */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra mais suave ao clicar */
+}

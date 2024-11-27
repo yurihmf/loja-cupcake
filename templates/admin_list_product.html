@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Seus estilos e metadados aqui -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='lista_cup_adm.css') }}">
+    <title>Lista de Cupcakes</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Lista de Cupcakes disponíveis para edição</h1>
+
+        <!-- Botão de Voltar -->
+        <button type="button" onclick="window.history.back();" class="submit-button">Voltar</button>
+
+        <ul class="cupcake-list">
+            {% for cupcake in cupcakes %}
+                <li class="cupcake-item">
+                    <div class="cupcake-image-container">
+                        <img src="{{ cupcake[5] }}" alt="Imagem do Cupcake" class="cupcake-image">
+                    </div>
+                    <div class="cupcake-details">
+                        <p><strong>Nome:</strong> {{ cupcake[1] }}</p>
+                        <p><strong>Descrição:</strong> {{ cupcake[2] }}</p>
+                        <p><strong>Preço:</strong> R$ {{ cupcake[3] }}</p>
+                        <p><strong>Disponível:</strong> {% if cupcake[4] %}Sim{% else %}Não{% endif %}</p>
+                        <a href="/admin_edit_product/{{ cupcake[0] }}" class="edit-link">Editar</a>
+                    </div>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+</body>
+</html>

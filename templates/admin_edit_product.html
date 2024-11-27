@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Seus estilos e metadados aqui -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='admin_edit.css') }}">
+    <title>Editar Cupcake</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Editar Cupcake</h1>
+        <form action="/atualizar_cupcake/{{ cupcake[0] }}" method="POST">
+            <label for="nome">Nome:</label>
+            <input type="text" id="nome" name="nome" value="{{ cupcake[1] }}"><br><br>
+
+            <label for="descricao">Descrição:</label>
+            <textarea id="descricao" name="descricao">{{ cupcake[2] }}</textarea><br><br>
+
+            <label for="preco">Preço:</label>
+            <input type="text" id="preco" name="preco" value="{{ cupcake[3] }}"><br><br>
+
+            <label for="disponivel">Disponível:</label>
+            <input type="checkbox" id="disponivel" name="disponivel" {% if cupcake[4] %}checked{% endif %}><br><br>
+
+            <input type="submit" value="Atualizar">
+        </form>
+    </div>
+
+</body>
+</html>

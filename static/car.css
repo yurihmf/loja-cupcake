@@ -1,0 +1,382 @@
+/* Reset de estilos padrão */
+body, ul, li, h1, p {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; /* Adiciona box-sizing para incluir padding na largura e altura */
+}
+
+/* Estilos do corpo */
+body {
+    font-family: 'Roboto', sans-serif; /* Fonte mais moderna */
+    background: linear-gradient(to right, #ff5f6d, #ffc371); /* Fundo gradiente idêntico à tela de login */
+    font-size: 16px;
+    color: #fff; /* Cor do texto */
+    line-height: 1.6;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    padding: 20px;
+    text-align: center; /* Centraliza o texto */
+    transition: background 0.5s ease; /* Transição suave da cor de fundo */
+}
+
+/* Efeito de brilho ao passar o mouse */
+body:hover {
+    filter: brightness(1.2); /* Aumenta o brilho ao passar o mouse */
+    transition: filter 0.3s ease; /* Transição suave do efeito */
+}
+
+/* Estilo do texto principal */
+h1 {
+    font-size: 48px; /* Tamanho grande para o título */
+    font-weight: bold; /* Negrito */
+    color: #f39c12; /* Cor laranja futurista */
+    text-transform: uppercase; /* Texto em maiúsculas */
+    margin-bottom: 30px; /* Espaçamento inferior */
+    letter-spacing: 2px; /* Espaçamento entre letras */
+    position: relative; /* Posição relativa para o efeito de camada */
+    overflow: hidden; /* Esconder o overflow para o efeito de camada */
+    transition: color 0.3s, transform 0.3s; /* Transições suaves */
+}
+
+h1::before {
+    content: ''; /* Conteúdo vazio para o pseudo-elemento */
+    position: absolute; /* Posição absoluta */
+    bottom: 0; /* Alinhar na parte inferior */
+    left: 0; /* Alinhar à esquerda */
+    width: 100%; /* Largura total */
+    height: 3px; /* Altura da linha */
+    background-color: #f39c12; /* Cor laranja futurista */
+    transform: scaleX(0); /* Escala inicial para zero */
+    transform-origin: left; /* Origem da transformação à esquerda */
+    transition: transform 0.3s; /* Transição suave da transformação */
+}
+
+h1:hover::before {
+    transform: scaleX(1); /* Expandir a linha ao passar o mouse */
+}
+
+/* Estilo do parágrafo */
+p {
+    font-size: 18px; /* Tamanho do texto */
+    color: #000000; /* Cor do texto */
+    margin-bottom: 20px; /* Espaçamento inferior */
+    transition: color 0.3s; /* Transição suave da cor */
+}
+
+p:hover {
+    color: #fff; /* Cor branca ao passar o mouse */
+}
+
+/* Estilo do link */
+a {
+    color: #f39c12; /* Cor laranja futurista */
+    text-decoration: none; /* Remove sublinhado */
+    transition: color 0.3s; /* Transição suave da cor */
+}
+
+a:hover {
+    color: #fff; /* Cor branca ao passar o mouse */
+}
+
+/* Estilos do container principal */
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    background-color: rgba(255, 255, 255, 0.9); /* Fundo semi-transparente */
+    padding: 20px;
+    border-radius: 15px; /* Bordas arredondadas */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2); /* Sombra mais pronunciada */
+    backdrop-filter: blur(10px); /* Efeito de desfoque no fundo */
+    transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s, background-color 0.3s; /* Transições suaves */
+    border: 2px solid transparent; /* Bordas iniciais */
+}
+
+.container:hover {
+    transform: translateY(-5px) scale(1.02); /* Eleva e escala o container ao passar o mouse */
+    box-shadow: 0 15px 45px rgba(0, 0, 0, 0.3); /* Aumenta a sombra */
+    border-color: #f39c12; /* Cor da borda ao passar o mouse */
+    background-color: rgba(255, 255, 255, 0.95); /* Altera a cor de fundo ao passar o mouse */
+}
+
+/* Estilos do título principal */
+h1 {
+    color: #e0887f; /* Cor do título */
+    font-size: 32px; /* Tamanho do título */
+    text-align: center; /* Alinhamento centralizado */
+    margin: 0 0 20px; /* Espaçamento inferior */
+    text-transform: uppercase; /* Texto em maiúsculas */
+    letter-spacing: 2px; /* Espaçamento entre letras */
+    transition: color 0.3s; /* Transição suave da cor */
+}
+
+h1:hover {
+    color: #f39c12; /* Cor do título ao passar o mouse */
+}
+
+
+/* Estilos da lista de itens no carrinho */
+.carrinho-items {
+    list-style-type: none;
+    padding: 0;
+}
+
+/* Estilos de um item no carrinho */
+.carrinho-item {
+    display: flex;
+    align-items: center;
+    margin: 0 0 20px;
+    border: 1px solid #ddd;
+    padding: 15px;
+    border-radius: 8px;
+    transition: box-shadow 0.3s, background-color 0.3s; /* Efeitos de transição suaves */
+    background: #fff; /* Fundo branco */
+}
+
+.carrinho-item:hover {
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1); /* Efeito de sombra ao passar o mouse */
+    background-color: #f9f9f9; /* Altera a cor de fundo ao passar o mouse */
+}
+
+/* Estilos da imagem do cupcake no carrinho */
+.carrinho-item-image img {
+    max-width: 100px;
+    height: auto;
+    margin-right: 15px;
+    border-radius: 8px; /* Bordas arredondadas */
+    transition: transform 0.3s; /* Efeito de transição suave */
+    cursor: pointer; /* Cursor do mouse */
+}
+
+.carrinho-item-image img:hover {
+    transform: scale(1.1); /* Aumenta ligeiramente o tamanho da imagem ao passar o mouse */
+}
+
+
+/* Estilos do nome do cupcake */
+.cupcake-name {
+    font-size: 20px;
+    color: #333;
+    flex: 1; /* Faz o nome ocupar o espaço disponível */
+    transition: color 0.3s; /* Efeito de transição suave na cor */
+    cursor: pointer; /* Cursor do mouse */
+}
+
+.cupcake-name:hover {
+    color: #f39c12; /* Cor laranja ao passar o mouse */
+}
+
+
+/* Estilos da descrição do cupcake */
+.cupcake-description {
+    font-size: 14px;
+    color: #777;
+    flex: 2; /* Faz a descrição ocupar mais espaço */
+    transition: color 0.3s; /* Efeito de transição suave na cor */
+}
+
+.cupcake-description:hover {
+    color: #f39c12; /* Cor laranja ao passar o mouse */
+}
+
+
+/* Estilos do preço e quantidade do cupcake */
+.cupcake-price,
+.cupcake-quantity {
+    font-size: 16px;
+    color: #333;
+    margin-left: 20px;
+    transition: color 0.3s; /* Efeito de transição suave na cor */
+}
+
+.cupcake-price:hover,
+.cupcake-quantity:hover {
+    color: #f39c12; /* Cor laranja ao passar o mouse */
+}
+
+
+/* Estilos do preço com destaque */
+.cupcake-price {
+    font-weight: bold;
+    color: #ff6b00; /* Cor laranja */
+    transition: color 0.3s; /* Efeito de transição suave na cor */
+}
+
+.cupcake-price:hover {
+    color: #f39c12; /* Cor laranja mais clara ao passar o mouse */
+}
+
+
+/* Estilos para a mensagem de carrinho vazio */
+.empty-cart {
+    text-align: center;
+    color: #777;
+    font-size: 18px;
+    margin-top: 20px;
+    opacity: 0; /* Inicia com opacidade 0 */
+    transform: translateY(20px); /* Inicia deslocada para cima */
+    transition: opacity 0.3s, transform 0.3s; /* Efeito de transição suave */
+
+    /* Adiciona um efeito de animação ao aparecer */
+    animation: appear 0.5s ease-in-out forwards;
+}
+
+/* Define a animação de aparecer */
+@keyframes appear {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Estiliza a mensagem ao passar o mouse sobre ela */
+.empty-cart:hover {
+    color: #f39c12; /* Cor laranja ao passar o mouse */
+    transform: scale(1.1); /* Efeito de escala ao passar o mouse */
+    transition: transform 0.3s; /* Transição suave do efeito de escala */
+}
+
+
+/* Estilos do botão de limpar o carrinho */
+.limpar-carrinho-button {
+    background-color: #f39c12; /* Cor laranja futurista */
+    color: #fff;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sombra suave */
+}
+
+/* Efeito ao passar o mouse sobre o botão */
+.limpar-carrinho-button:hover {
+    background-color: #ff6b00; /* Cor laranja mais forte ao passar o mouse */
+    transform: translateY(-3px); /* Eleva ligeiramente ao passar o mouse */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra mais pronunciada */
+}
+
+
+/* Estilos do botão "Voltar" */
+.voltar-button {
+    text-decoration: none;
+    color: #333;
+    font-size: 18px;
+    margin-right: 20px;
+    transition: color 0.3s, transform 0.3s;
+}
+
+/* Efeito ao passar o mouse sobre o botão */
+.voltar-button:hover {
+    color: #f39c12; /* Cor laranja futurista ao passar o mouse */
+    transform: scale(1.1); /* Aumenta ligeiramente o tamanho ao passar o mouse */
+}
+
+
+/* Estilos do container do botão de checkout */
+.checkout-button-container {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 20px;
+}
+
+/* Estilos do botão de checkout */
+.checkout-button {
+    background-color: #e0887f; /* Cor roxa futurista */
+    color: #fff;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s, transform 0.3s;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra ao botão */
+}
+
+/* Efeito ao passar o mouse sobre o botão */
+.checkout-button:hover {
+    background-color: #ff6b00; /* Cor laranja futurista ao passar o mouse */
+    transform: translateY(-3px); /* Eleva o botão ao passar o mouse */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Sombra mais pronunciada ao passar o mouse */
+}
+
+
+/* Estilos do container do botão de checkout */
+.checkout-button-container {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 20px;
+}
+
+/* Estilos do botão de checkout */
+.checkout-button {
+    background-color: #e0887f; /* Cor roxa futurista */
+    color: #fff;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s, transform 0.3s;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra ao botão */
+}
+
+/* Efeito ao passar o mouse sobre o botão */
+.checkout-button:hover {
+    background-color: #ff6b00; /* Cor laranja futurista ao passar o mouse */
+    transform: translateY(-3px); /* Eleva o botão ao passar o mouse */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Sombra mais pronunciada ao passar o mouse */
+}
+
+
+/* Estilos para a mensagem de confirmação */
+.confirmation-message {
+    background-color: #4CAF50;
+    color: white;
+    padding: 15px;
+    text-align: center;
+    margin-top: 20px;
+    border-radius: 5px;
+    transition: transform 0.3s, box-shadow 0.3s;
+    cursor: pointer;
+}
+
+/* Efeito ao passar o mouse sobre a mensagem de confirmação */
+.confirmation-message:hover {
+    transform: scale(1.05); /* Aumenta ligeiramente o tamanho */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); /* Efeito de sombra ao passar o mouse */
+}
+
+/* Estilos para o botão de remoção do carrinho */
+.remover-item-do-carrinho {
+    background-color: #e0887f;
+    color: #fff;
+    border: none;
+    padding: 8px 12px;
+    cursor: pointer;
+    font-size: 14px;
+    border-radius: 5px;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.remover-item-do-carrinho:hover {
+    background-color: #e6482e; /* Cor vermelha ao passar o mouse */
+    transform: scale(1.05); /* Aumenta ligeiramente o tamanho */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Efeito de sombra ao passar o mouse */
+}

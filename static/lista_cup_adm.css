@@ -1,0 +1,174 @@
+body {
+    font-family: 'Roboto', sans-serif;
+    background: linear-gradient(to right, #ff5f6d, #ffc371); /* Fundo gradiente */
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    overflow-y: auto; /* Permitindo a rolagem vertical */
+}
+
+/* Animação de fundo */
+@keyframes animateBackground {
+    0% {
+        background-position: 0% 0%;
+    }
+    50% {
+        background-position: 100% 0%;
+    }
+    100% {
+        background-position: 0% 0%;
+    }
+}
+
+body::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.3), transparent 70%); /* Gradiente radial */
+    animation: animateBackground 60s linear infinite; /* Animação de movimento */
+}
+
+/* Adicionando animação de suavização */
+body,
+button,
+input,
+select,
+textarea {
+    transition: all 0.3s ease;
+}
+
+/* Efeito de hover para botões e links */
+button:hover,
+a:hover,
+input[type="submit"]:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Estilizando botões */
+button,
+input[type="submit"] {
+    padding: 12px 24px;
+    background-color: #ff5f6d; /* Cor do botão */
+    color: #fff;
+    border: none;
+    border-radius: 25px; /* Bordas arredondadas */
+    cursor: pointer;
+    font-size: 16px;
+}
+
+/* Estilos para o container */
+.container {
+    max-width: 800px;
+    margin: 20px;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px; /* Bordas arredondadas */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Sombra mais suave */
+    transition: all 0.3s ease; /* Transição suave para todas as propriedades */
+    position: relative; /* Para posicionamento do gradiente */
+    overflow: hidden; /* Oculta o overflow para efeitos visuais */
+}
+
+.container::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.5)); /* Gradiente radial para efeito de luz */
+    z-index: -1; /* Coloca o gradiente atrás do conteúdo */
+    transition: all 0.5s ease; /* Transição suave */
+    transform: scale(0); /* Inicia com escala 0 para animação */
+}
+
+.container:hover::before {
+    transform: scale(1); /* Aumenta a escala ao passar o mouse */
+}
+
+/* Estilos para o título h1 */
+h1 {
+    font-size: 36px; /* Tamanho maior para destaque */
+    margin-bottom: 20px;
+    text-align: center;
+    color: #ff5f6d; /* Cor vibrante para o título */
+    transition: color 0.3s; /* Transição de cor suave */
+}
+
+h1:hover {
+    color: #ffc371; /* Cor alterada ao passar o mouse */
+}
+
+/* Estilo para a lista de cupcakes */
+.cupcake-list {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* Layout responsivo em grade */
+    gap: 30px; /* Espaçamento entre os itens */
+}
+
+/* Estilo para cada item da lista */
+.cupcake-item {
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1); /* Sombra suave */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Transições suaves */
+}
+
+.cupcake-item:hover {
+    transform: translateY(-5px); /* Efeito de levantamento ao passar o mouse */
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.2); /* Sombra mais pronunciada */
+}
+
+/* Estilo para a imagem do cupcake */
+.cupcake-image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+}
+
+/* Estilo para os detalhes do cupcake */
+.cupcake-details {
+    padding: 20px;
+    text-align: center;
+}
+
+.cupcake-details h3 {
+    font-size: 18px;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.cupcake-details p {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 5px;
+}
+
+/* Estilos para o link "Editar" */
+a.edit-link {
+    background-color: #ff6b6b; /* Cor de fundo do link */
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 10px 16px;
+    border-radius: 5px;
+    transition: background-color 0.3s, color 0.3s;
+    display: inline-block;
+    margin-top: 10px;
+}
+
+a.edit-link:hover {
+    background-color: #ff4d4d; /* Mudança de cor no hover */
+    margin-top: 12px;
+}

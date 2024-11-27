@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Listagem de Pedidos Realizados</title>
+    <link rel="stylesheet" href="../static/avaliar_pedidos.css">
+    <link rel="stylesheet" href="../static/mediaSmartphone.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <style>
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Adicione um botão de voltar com um ícone Font Awesome -->
+        <a href="/dashboard" class="voltar-button">
+            <i class="fas fa-arrow-left"></i> Voltar
+        </a>
+        <h1>Listagem de Pedidos Realizados</h1>
+        <ul>
+            {% if not pedidos %}
+                <div class="no-pedidos-message">
+                <p>Não há pedidos: </p>
+                <!-- Link "Peça já o seu cupcake" -->
+                <a href="/dashboard" class="pedir-cupcake-link">Peça já o seu cupcake</a>
+            </div>
+
+            {% endif %}
+            {% for pedido in pedidos %}
+            <div class="pedido-container" data-pedido-id="{{ pedido['pedido_id'] }}" >
+            <p>Detalhes do pedido:</p>
+                <img src="/static/images/logo-cup.jpg" alt="Imagem do Cupcake" class="cupcake-img clickable" onclick="mostrarDetalhesPedido('{{ pedido['pedido_id'] }}')">
+                <!--<p>ID do Pedido: {{ pedido['pedido_id'] }}</p>
+                <p>ID do Usuário: {{ pedido['usuario_id'] }}</p>!-->
+                <p>Data do Pedido: {{ pedido['data_pedido'] }}</p>
+                <p>Status: {{ pedido['status'] }}</p>
+                <ul id="itens-{{ pedido['pedido_id'] }}" class="itens-pedido">
+                    <li>Nome: {{ pedido['cupcake_nome'] }}</li>
+                    <li>Descrição: {{ pedido['cupcake_descricao'] }}</li>
+                    <li>Quantidade: {{ pedido['quantidade'] }}</li>
+                    <li>Preço Unitário: {{ pedido['cupcake_preco'] }}</li>
+                </ul>
+                <span class="status-avaliacao"></span>
+                    <!-- Este é o HTML que representa a seção de classificação para um pedido específico -->
+                    <div class="rating" data-pedido-id="{{ pedido['pedido_id'] }}">
+                        <!-- Estrelas numeradas de 1 a 5, cada uma com um evento onclick para classificar o pedido -->
+                        <span class="star" onclick="rate(5, '{{ pedido['pedido_id'] }}')" tabindex="-1"></span>
+                        <span class="star" onclick="rate(4, '{{ pedido['pedido_id'] }}')" tabindex="-1"></span>
+                        <span class="star" onclick="rate(3, '{{ pedido['pedido_id'] }}')" tabindex="-1"></span>
+                        <span class="star" onclick="rate(2, '{{ pedido['pedido_id'] }}')" tabindex="-1"></span>
+                        <span class="star" onclick="rate(1, '{{ pedido['pedido_id'] }}')" tabindex="-1"></span>
+                    </div>
+                    <!-- Este é o elemento de texto onde a classificação será exibida -->
+                    <p class="rating-text" id="rating-text-{{ pedido['pedido_id'] }}">Avaliação: 0</p>
+                    <div class ="container_comm">
+                        <form>
+                            <div class="container_comm" data-pedido-id="{{ pedido['pedido_id'] }}" data-usuario-id="2">
+                             <!-- Aqui serão exibidas as avaliações deste pedido -->
+                                <label for="comentario-{{ pedido['pedido_id'] }}">Comentário (máximo 100 caracteres):</label>
+                                <textarea id="comentario-{{ pedido['pedido_id'] }}" name="comentario" maxlength="100" rows="4"></textarea>
+                            </div>
+                            <br>
+                            <input type="button" value="Enviar" onclick="this.onclick = function() { enviarComentario('{{ pedido['pedido_id'] }}'); this.onclick = null; }">
+                        </form>
+                    </div>
+                </div>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <!-- Estrutura da tela modal -->
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="fecharModal()">&times;</span>
+            <h2>Detalhes do Pedido</h2>
+            <div id="modal-content-placeholder"></div>
+        </div>
+    </div>
+    <script>
+        function obterIdUsuario() {
+            fetch('/obter_id_usuario', {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            })
+            .then(response => {
+                if (response.status === 200) {
+                    return response.json();
+                } else {
+                    throw new Error('Não foi possível obter o ID do usuário.');
+                }
+            })
+            .then(data => {
+                // O ID do usuário está em data.usuario_id
+                console.log('ID do usuário:', data.usuario_id);
+            })
+            .catch(error => {
+                console.error('Erro ao obter o ID do usuário:', error);
+            });
+        }
+        function enviarComentario(pedidoId) {
+            const comentarioField = document.getElementById(`comentario-${pedidoId}`);
+            const comentario = comentarioField.value;
+            const classificacao = ratings[pedidoId]; // Obtenha a classificação atual deste pedido
+
+            // Faça uma solicitação GET para verificar se já existe uma avaliação para este pedido
+            fetch(`/verificar_avaliacao/${pedidoId}`, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+            })
+            .then(response => {
+                if (response.status === 200) {
+                    return response.json();
+                } else {
+                    throw new Error('Não foi possível verificar a avaliação existente.');
+                }
+            })
+            .then(avaliacaoExistente => {
+                // Verifique se já existe uma avaliação para este pedido
+                if (avaliacaoExistente) {
+                    // Se já existe uma avaliação, faça uma solicitação PUT para atualizá-la
+                    const avaliacao_id = avaliacaoExistente.avaliacao_id;
+                    console.log(avaliacao_id);
+
+                    return fetch(`/atualizar_avaliacao/${avaliacao_id}`, {
+                        method: 'PUT',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({
+                            classificacao: classificacao,
+                            comentario: comentario
+                        })
+                    });
+                } else {
+                    location.reload();
+                    criarNovoComentario(pedidoId)
+                }
+            })
+            .then(response => response.json())
+            .then(result => {
+                comentarioField.value = '';
+                location.reload();
+                // Lidar com a resposta do servidor, se necessário
+                console.log(result);
+                // Atualize a interface do usuário conforme necessário
+            })
+            .catch(error => {
+                // Lidar com erros de solicitação, se necessário
+                console.error('Erro ao enviar avaliação:', error);
+            });
+        }
+
+        function criarNovoComentario(pedidoId) {
+            const comentarioField = document.getElementById(`comentario-${pedidoId}`);
+            const comentario = comentarioField.value;
+            const classificacao = ratings[pedidoId]; // Obtenha a classificação atual deste pedido
+
+            // Faça uma solicitação GET para obter o usuario_id com base no pedidoId
+            fetch(`/obter_usuario_id/${pedidoId}`, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+            })
+            .then(response => {
+                if (response.status === 200) {
+                    return response.json();
+                } else {
+                    throw new Error('Não foi possível obter o ID do usuário.');
+                }
+            })
+            .then(data => {
+                const usuarioId = data.usuario_id;
+
+                // Crie um objeto de dados para enviar ao servidor
+                const dados = {
+                    pedido_id: pedidoId,
+                    usuario_id: usuarioId, // Adicione o usuario_id aqui
+                    classificacao: classificacao,
+                    comentario: comentario
+                };
+
+                // Faça uma solicitação POST para o servidor Python
+                return fetch('/inserir_avaliacao', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(dados)
+                });
+            })
+            .then(response => response.json())
+            .then(result => {
+                location.reload();
+                console.log(result);
+                // Atualize a interface do usuário conforme necessário
+                // Limpe o campo de comentário após o envio
+                comentarioField.value = '';
+            })
+            .catch(error => {
+                // Lidar com erros de solicitação, se necessário
+                console.error('Erro ao enviar avaliação:', error);
+            });
+        }
+
+        // Objeto para manter o estado de classificação de cada pedido separadamente
+        const ratings = {};
+        // Função chamada quando uma estrela é clicada para classificar um pedido
+        function rate(rating, pedidoId) {
+            // Obtém a classificação atual do pedido
+            const currentRating = ratings[pedidoId];
+
+            // Se a classificação atual for igual à classificação clicada (ou seja, desativar a primeira estrela)
+            if (currentRating === rating) {
+                // Define a classificação como 0 (desativada)
+                ratings[pedidoId] = 0;
+            } else {
+                // Caso contrário, define a classificação do pedido com o valor clicado
+                ratings[pedidoId] = rating;
+            }
+
+            // Atualiza a aparência das estrelas de classificação
+            updateStars(pedidoId);
+            // Atualiza o texto de classificação
+            updateRatingText(pedidoId);
+
+            // Evita que o navegador aplique o foco após o clique
+            event.preventDefault();
+        }
+
+        // Função para atualizar a aparência das estrelas de classificação
+        function updateStars(pedidoId) {
+            // Seleciona todas as estrelas dentro do pedido específico
+            const stars = document.querySelectorAll(`.rating[data-pedido-id="${pedidoId}"] .star`);
+            // Obtém a classificação atual do pedido
+            const currentRating = ratings[pedidoId];
+            // Inverte a ordem das estrelas para corresponder às classificações corretas
+            stars.forEach((star, index) => {
+                const reversedIndex = stars.length - index - 1;
+                if (reversedIndex < currentRating) {
+                    star.classList.add('active');
+                } else {
+                    star.classList.remove('active');
+                }
+            });
+        }
+        function updateStarsDB(pedidoId,classificacao) {
+            // Seleciona todas as estrelas dentro do pedido específico
+            const stars = document.querySelectorAll(`.rating[data-pedido-id="${pedidoId}"] .star`);
+
+            // Atualiza a classificação no objeto ratings
+            ratings[pedidoId] = classificacao;
+
+            // Atualiza as estrelas com base na nova classificação
+            stars.forEach((star, index) => {
+                const reversedIndex = stars.length - index - 1;
+                if (reversedIndex < classificacao) {
+                    star.classList.add('active');
+                } else {
+                    star.classList.remove('active');
+                }
+            });
+        }
+
+        // Função para atualizar o texto de classificação com a classificação específica
+        function updateRatingTextDB(pedidoId, classificacao) {
+            // Construa o seletor para encontrar o elemento de texto de classificação específico
+            const ratingTextSelector = `#rating-text-${pedidoId}`;
+
+            // Encontre o elemento de texto de classificação usando o seletor
+            const ratingTextElement = document.querySelector(ratingTextSelector);
+
+            // Verifique se o elemento de texto de classificação existe antes de atualizar seu conteúdo
+            if (ratingTextElement) {
+                // Atualize o texto com a classificação específica do pedido
+                ratingTextElement.textContent = `Avaliação: ${classificacao}`;
+            }
+        }
+
+        // Função para atualizar o texto de classificação
+        function updateRatingText(pedidoId) {
+            // Seleciona o elemento de texto de classificação específico para o pedido
+            const ratingText = document.getElementById(`rating-text-${pedidoId}`);
+            // Obtém a classificação atual do pedido
+            const currentRating = ratings[pedidoId];
+
+            // Verifica se o elemento de texto de classificação existe antes de atualizar seu conteúdo
+            if (ratingText) {
+                // Atualize o texto com a classificação atual do pedido
+                ratingText.textContent = `Avaliação: ${currentRating}`;
+            }
+        }
+
+
+        // Adicione um evento de clique aos botões para mostrar/ocultar os itens do pedido
+        const mostrarItensButtons = document.querySelectorAll('.mostrar-itens');
+        mostrarItensButtons.forEach((button) => {
+            button.addEventListener('click', () => {
+                // Encontre o ID do pedido associado ao botão clicado
+                const pedidoId = button.getAttribute('data-pedido-id');
+
+                // Encontre os itens do pedido correspondentes e exiba/oculte-os
+                const itensPedido = document.getElementById(`itens-${pedidoId}`);
+                if (itensPedido.style.display === 'none' || itensPedido.style.display === '') {
+                    itensPedido.style.display = 'block';
+                    button.textContent = 'Ocultar Itens';
+                } else {
+                    itensPedido.style.display = 'none';
+                    button.textContent = 'Mostrar Itens';
+                }
+            });
+        });
+
+        // Função para abrir a tela modal
+        function mostrarDetalhesPedido(pedidoId) {
+            const modal = document.getElementById('myModal');
+            modal.style.display = 'block';
+
+            // Fazer uma requisição AJAX para obter os detalhes do pedido
+            const xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    // Preencher o conteúdo da tela modal com os detalhes do pedido obtidos da resposta AJAX
+                    const modalContentPlaceholder = document.getElementById('modal-content-placeholder');
+                    modalContentPlaceholder.innerHTML = xhr.responseText;
+                }
+            };
+            xhr.open('GET', `/obter_detalhes_pedido?pedido_id=${pedidoId}`, true);
+            xhr.send();
+        }
+
+        // Função para fechar a tela modal
+        function fecharModal() {
+            const modal = document.getElementById('myModal');
+            modal.style.display = 'none';
+        }
+        // Adicione um ouvinte de evento de teclado para detectar quando a tecla "Esc" é pressionada
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                fecharModal(); // Feche a tela modal quando a tecla "Esc" for pressionada
+            }
+        });
+
+        function carregarPedidosAvaliados() {
+            fetch('/obter_pedidos_avaliados', {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+            })
+            .then(response => {
+                if (response.status === 200) {
+                    return response.json();
+                } else {
+                    throw new Error('Não foi possível obter os pedidos avaliados.');
+                }
+            })
+            .then(pedidos => {
+                pedidos.forEach(pedido => {
+                console.log(pedido[0]);
+                const pedidoId = pedido[0];
+                const comentario = pedido[1];
+                let classificacao = pedido[2];
+
+                // Verifique se o campo de comentário existe antes de definir seu valor
+                const comentarioField = document.getElementById(`comentario-${pedidoId}`);
+                if (comentarioField) {
+                    comentarioField.value = comentario;
+                }
+
+                // Verifique se o contêiner de classificação existe antes de atualizar as estrelas
+                const ratingContainer = document.querySelector(`.rating[data-pedido-id="${pedidoId}"]`);
+                if (ratingContainer) {
+                    // Atualize as estrelas de classificação
+                    if (classificacao > 0) {
+                        // Comece do último índice e vá até o primeiro
+                        for (let i = 5; i > 5 - classificacao; i--) {
+                            const star = ratingContainer.querySelector(`.star:nth-child(${i})`);
+                            if (star) {
+                                star.classList.add('active');
+                            }
+                        }
+                    }
+                    if(classificacao === null){
+                        classificacao = 0;
+                    }
+                    // Atualize o texto de classificação para o pedido atual
+                    updateRatingTextDB(pedidoId, classificacao)
+                    updateStarsDB(pedidoId,classificacao)
+                }
+            });
+
+            })
+            .catch(error => {
+                console.error('Erro ao carregar pedidos avaliados:', error);
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            // Chame a função para carregar pedidos avaliados quando a página for carregada
+            verificarAvaliacao();
+            carregarPedidosAvaliados();
+        });
+
+        function verificarAvaliacao() {
+            fetch('/obter_pedidos_avaliados', {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+            .then(response => {
+                if (response.ok) {
+                    return response.json();
+                } else {
+                    throw new Error('Erro ao obter as avaliações.');
+                }
+            })
+            .then(avaliacoes => {
+
+                const pedidosNaPagina = document.querySelectorAll('.pedido-container[data-pedido-id]');
+                const pedidoIds = avaliacoes.map(avaliacao => avaliacao[0]);
+
+                // Iterar sobre os elementos da página
+                pedidosNaPagina.forEach(pedidoContainer => {
+                    const pedidoId = parseInt(pedidoContainer.getAttribute('data-pedido-id')); // Certifique-se de converter para número
+
+                    const avaliado = pedidoIds.includes(pedidoId);
+
+                    // Crie um elemento de status de avaliação para cada pedidoContainer
+                    const statusAvaliacao = document.createElement('span');
+
+                    if (avaliado) {
+                        console.log(`Pedido ID: ${pedidoId}, Avaliado: ${avaliado}`);
+                        statusAvaliacao.textContent = 'Avaliado';
+                        statusAvaliacao.classList.add('avaliado');
+                    } else {
+                        console.log(`Pedido ID: ${pedidoId}, Avaliado: ${avaliado}`);
+                        statusAvaliacao.textContent = 'Não Avaliado';
+                        statusAvaliacao.classList.add('nao-avaliado');
+                    }
+
+                    // Adicione o elemento de status de avaliação ao pedidoContainer
+                    pedidoContainer.appendChild(statusAvaliacao);
+                });
+
+            })
+            .catch(error => {
+                console.error('Erro ao obter as avaliações:', error);
+            });
+        }
+
+    </script>
+</body>
+</html>
